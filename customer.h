@@ -13,24 +13,15 @@ private:
     int cId;
 public:
     void add_customer();
+    void del_customer(int id);
     void p_data();
     friend void operator << (fstream& file, Customer& c);
-    char* get_name()
-    {
-        return name.get_name();
-    }
-    int get_id()
-    {
-        return cId;
-    }
-    int get_age()
-    {
-        return age;
-    }
-    char* get_date()
-    {
-        return DOB->get_date();
-    }
+    friend void operator >> (fstream& file, Customer& c);
+    char* get_name();
+    int get_id();
+    int get_age();
+    char* get_date();
+    bool is_exist();
 };
 
 #endif
