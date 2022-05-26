@@ -17,6 +17,8 @@ public:
     void p_data();
     friend void operator << (fstream& file, Customer& c);
     friend void operator >> (fstream& file, Customer& c);
+    void set_id(int id);
+    void set_age(int age);
     char* get_name();
     int get_id();
     int get_age();

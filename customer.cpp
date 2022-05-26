@@ -29,10 +29,33 @@ void operator <<(fstream& s, Customer &c)
     << endl << c.get_date() << endl;
 }
 
+void Customer::set_id(int id)
+{
+    cId = id;
+}
+
 void operator >> (fstream& file, Customer& c)
 {
-    string name;
-    int id;
+    string str;
+    getline(file, str);
+    c.set_id(stoi(str));
+
+    getline(file, str);
+    int pos = str.find(' ');
+    c.name.set_name(str.substr(0, pos), str.substr(pos+1, str.length()-1));
+
+    getline(file, str);
+    c.set_age(stoi(str));
+
+    getline(file, str);
+    pos = str.find("\\");
+    int d = stoi(str.substr(0, pos));
+    str.erase(0, pos+1);
+    pos = str.find("\\");
+    int m = stoi(str.substr(0, pos));
+    str.erase(0, pos+1);
+    int y = stoi(str.substr(0, str.length()-1));
+    c.DOB->set_date(d, m, y);
 
 }
 
@@ -62,4 +85,9 @@ void Customer::del_customer(int id)
 {
     fstream file;
     file.
+}
+
+void Customer::set_age(int AGE)
+{
+    age = AGE;
 }
