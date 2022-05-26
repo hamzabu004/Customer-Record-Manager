@@ -54,7 +54,7 @@ void operator >> (fstream& file, Customer& c)
     pos = str.find("\\");
     int m = stoi(str.substr(0, pos));
     str.erase(0, pos+1);
-    int y = stoi(str.substr(0, str.length()-1));
+    int y = stoi(str.substr(0, str.length()));
     c.DOB->set_date(d, m, y);
 
 }
@@ -84,10 +84,18 @@ bool is_exist(int id)
 void Customer::del_customer(int id)
 {
     fstream file;
-    file.
+
 }
 
 void Customer::set_age(int AGE)
 {
     age = AGE;
+}
+
+void Customer::p_data()
+{
+    cout << "ID: " << cId << endl;
+    cout << "Name: " << name.get_name() << endl;
+    cout << "Age: " << age << endl;
+    cout << "DOB: " << DOB->get_date() << endl;
 }

@@ -20,19 +20,23 @@ int main()
         file << c1;
         file.close();
     }
+    else if (choice == 2)
+    {
+        fstream file;
+        file.open("customer.txt", ios::in);
+        while(!file.eof())
+        {
+            file >> c1;
+            c1.p_data();
+        }
+
+    }
 
 
 }
 
 
 
-// void Customer::p_data()
-// {
-//    cout << "First Name: " << f_name << endl;
-//    cout << "Last Name: " << l_name << endl;
-//    cout << "ID: " << cId << endl;
-//    cout << "Age: " << age << endl;;
-// }
 
 
 int welcome()
