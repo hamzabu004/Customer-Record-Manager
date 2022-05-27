@@ -1,6 +1,7 @@
 #include "customer.h"
 
 
+
 void Customer::add_customer()
 {
     string f_name, l_name, dob;
@@ -22,11 +23,11 @@ void Customer::add_customer()
     set_person(f_name, l_name, age, dob);
 }
 
-void operator <<(fstream& s, Customer &c)
+void operator << (fstream& s, Customer &c)
 {
 
-    s << c.get_id() << endl << c.get_name() << endl << c.get_age()
-    << endl << c.get_date() << endl;
+    s << c.cId << endl << c.name.get_name() << endl << c.age
+    << endl << c.DOB->get_date() << endl;
 }
 
 void Customer::set_id(int id)
@@ -34,19 +35,21 @@ void Customer::set_id(int id)
     cId = id;
 }
 
+//get each customer from file
 void operator >> (fstream& file, Customer& c)
 {
     string str;
     getline(file, str);
-    c.set_id(stoi(str));
+    c.cId = stoi(str);
 
     getline(file, str);
     int pos = str.find(' ');
     c.name.set_name(str.substr(0, pos), str.substr(pos+1, str.length()-1));
 
     getline(file, str);
-    c.set_age(stoi(str));
+    c.age = stoi(str);
 
+    //get date in indiviual variable without /
     getline(file, str);
     pos = str.find("\\");
     int d = stoi(str.substr(0, pos));
@@ -59,31 +62,63 @@ void operator >> (fstream& file, Customer& c)
 
 }
 
-char* Customer::get_name()
-{
-    return name.get_name();
-}
-int Customer::get_id()
-{
-    return cId;
-}
-int Customer::get_age()
-{
-    return age;
-}
-char* Customer::get_date()
-{
-    return DOB->get_date();
-}
-bool is_exist(int id)
-{
+//char* Customer::get_name()
+//{
+//    return name.get_name();
+//}
+//int Customer::get_id()
+//{
+//    return cId;
+//}
+//int Customer::get_age()
+//{
+//    return age;
+//}
+//char* Customer::get_date()
+//{
+//    return DOB->get_date();
+//}
+bool Customer::is_exist(int id) {
     fstream file;
     file.open("customer.txt", ios::in);
+    Customer c;
+    while (!file.eof())
+    {
+        file >> c;
+        if (c.cId == id)
+        {
+            return true;
+        }
+    }
+    return false;
 
 }
-void Customer::del_customer(int id)
+void Customer::del_customer()
 {
-    fstream file;
+    int id;
+    cout << "Enter Id of Customer: ";
+    cin >> id;
+    if (is_exist(id))
+    {
+        Customer c;
+        fstream file1, file2;
+        file1.open("customer.txt", ios::in);
+        file2.open("temp.txt", ios::out);
+
+        while (!file1.eof())
+        {
+            file1 >> c;
+            if (c.cId != id)
+                file2 << c;
+        }
+        remove("customer.txt");
+        rename("temp.txt", "customer.txt");
+
+    }
+    else
+    {
+        cout << "Invalid ID!"<< endl;
+    }
 
 }
 

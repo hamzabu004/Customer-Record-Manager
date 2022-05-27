@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
 
 #include "base.h"
 
@@ -13,7 +14,7 @@ private:
     int cId;
 public:
     void add_customer();
-    void del_customer(int id);
+    void del_customer();
     void p_data();
     friend void operator << (fstream& file, Customer& c);
     friend void operator >> (fstream& file, Customer& c);
@@ -23,7 +24,7 @@ public:
     int get_id();
     int get_age();
     char* get_date();
-    bool is_exist();
+    bool is_exist(int id);
 };
 
 #endif

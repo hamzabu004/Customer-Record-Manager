@@ -22,6 +22,10 @@ int main()
     }
     else if (choice == 2)
     {
+        c1.del_customer();
+    }
+    else if (choice == 3)
+    {
         fstream file;
         file.open("customer.txt", ios::in);
         while(!file.eof())
@@ -29,7 +33,6 @@ int main()
             file >> c1;
             c1.p_data();
         }
-
     }
 
 
