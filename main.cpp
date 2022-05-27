@@ -34,8 +34,6 @@ int main()
             c1.p_data();
         }
     }
-
-
 }
 
 

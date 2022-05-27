@@ -40,6 +40,10 @@ void operator >> (fstream& file, Customer& c)
 {
     string str;
     getline(file, str);
+    if (str.empty())
+    {
+        return;
+    }
     c.cId = stoi(str);
 
     getline(file, str);
@@ -108,11 +112,14 @@ void Customer::del_customer()
         while (!file1.eof())
         {
             file1 >> c;
+            if (c.cId == 0)
+                break;
             if (c.cId != id)
                 file2 << c;
+            c.cId = 0;
         }
-        remove("customer.txt");
-        rename("temp.txt", "customer.txt");
+        std::remove("customer.txt");
+        rename("customer.txt", "customer.txt");
 
     }
     else
