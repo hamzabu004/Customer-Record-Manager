@@ -1,7 +1,5 @@
 #include "customer.h"
-
-
-
+#include<cstdio>
 void Customer::add_customer()
 {
     string f_name, l_name, dob;
@@ -66,22 +64,7 @@ void operator >> (fstream& file, Customer& c)
 
 }
 
-//char* Customer::get_name()
-//{
-//    return name.get_name();
-//}
-//int Customer::get_id()
-//{
-//    return cId;
-//}
-//int Customer::get_age()
-//{
-//    return age;
-//}
-//char* Customer::get_date()
-//{
-//    return DOB->get_date();
-//}
+
 bool Customer::is_exist(int id) {
     fstream file;
     file.open("customer.txt", ios::in);
@@ -118,9 +101,10 @@ void Customer::del_customer()
                 file2 << c;
             c.cId = 0;
         }
+        file1.close();
+        file2.close();
         std::remove("customer.txt");
-        rename("customer.txt", "customer.txt");
-
+        std::rename("temp.txt", "customer.txt");
     }
     else
     {

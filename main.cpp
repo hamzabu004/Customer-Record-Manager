@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cstring>
 #include <fstream>
+#include <cstdio>
 #include "customer.h"
 
 using namespace std;
@@ -10,6 +11,7 @@ int welcome();
 int main()
 {
     int choice;
+
     Customer c1, c2;
     choice = welcome();
     if (choice == 1)
@@ -23,6 +25,8 @@ int main()
     else if (choice == 2)
     {
         c1.del_customer();
+//        std::remove("customer.txt");
+
     }
     else if (choice == 3)
     {
